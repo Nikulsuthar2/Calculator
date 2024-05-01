@@ -1,0 +1,241 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: lavender;
+    gap: 10px;
+}
+
+.calculator-body{
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.103);
+    border-radius: 20px;
+    padding: 10px;
+    width: 270px;
+}
+
+
+.heading{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.display{
+    height: 100px;
+    background-color: lavender;
+    margin-bottom: 10px;
+    border-radius: 10px;  
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    overflow-y: auto;
+}
+
+#display-text{
+    width: 100%;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 5px;
+    text-align: end;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    
+}
+
+.keys input {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    font-size: 18px;
+    outline: none;
+}
+
+.key-op{
+    background-color: #0059ff;
+    color: white;
+    font-weight: bold;  
+    border: none;
+}
+
+.key-op:hover{
+    background-color: #002f86; 
+}
+
+.key-num{
+    background-color: lavender;
+    border: 1px solid #cbcbcb;
+    font-weight: bold;
+}
+
+.key-num:hover{
+    background-color: rgb(199, 199, 216);
+}
+
+.key-func {
+    font-weight: bold;
+    border: none;
+    background-color: orange;
+    color: white;
+}
+
+.key-func:hover {
+    background-color: rgb(158, 104, 3);
+}
+
+#key-equal {
+    width: 130px;
+    grid-column: 3 / 5;
+    font-size: 30px;
+}
+
+.history-body{
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.103);
+    border-radius: 20px;
+    width: 270px;
+    height: 512px;
+    min-height: 50px;
+    overflow-y: auto;
+}
+
+.history-head{
+    position: fixed;
+    z-index: 10;
+    background-color: white;
+    width: 270px;
+    padding: 10px 0px;
+    border-radius: 20px 20px 0px 0px;
+    margin-bottom: 0;
+}
+
+.history-list{
+    display: flex;
+    position: relative;
+    top: 60px;
+    flex-direction: column;
+    padding: 0px 10px 10px 10px;
+    gap: 10px;
+}
+
+.history-text{
+    background-color: lavender;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    color: rgb(59, 59, 59);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.history-close-btn{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+
+.history-close-btn:hover{
+    opacity: 0.5;
+}
+
+.history-empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    color: gray;
+    font-size: 13px;
+}
+
+@media (prefers-color-scheme:dark){
+    body{
+        background-color: #181818;
+    }
+    .calculator-body{
+        background-color: black;
+    }
+    .heading{
+        color: white;
+    }
+    .display{
+        background-color: #212121;
+        color: white;
+    }
+    .key-num{
+        background-color: #19191b;
+        color: white;
+        border: 1px solid #2c2c2c;
+    }
+    .key-num:hover{
+        background-color: #333338;
+    }
+    
+    .history-body{
+        background-color: black;
+    }
+    .history-head{
+        background-color: black;
+    }
+    .history-text{
+        background-color: #19191b;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body{
+        flex-direction: column;
+        height: 92vh;
+        overflow: hidden;
+
+    }
+    .calculator-body{
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .display{
+        height: 100%;
+    }
+    .keys input {
+        width: auto;
+    }
+    #key-equal{
+        width: 100%;
+    }
+    .history-body{
+        display: none;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .history-head{
+        width: 50%;
+        
+    }
+}
