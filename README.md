@@ -19,7 +19,10 @@ This is a simple calculator web application built using HTML, CSS, and JavaScrip
 
 ## Screenshots
 
-![Calculator Screenshot](/screenshots/calculator.png)
+![Calculator Screenshot](https://github.com/Nikulsuthar2/Calculator/blob/main/Screenshots/img1.png?raw=true)
+![Calculator Screenshot](https://github.com/Nikulsuthar2/Calculator/blob/main/Screenshots/img2.png?raw=true)
+![Calculator Screenshot](https://github.com/Nikulsuthar2/Calculator/blob/main/Screenshots/img3.png?raw=true)
+![Calculator Screenshot](https://github.com/Nikulsuthar2/Calculator/blob/main/Screenshots/img4.png?raw=true)
 
 ## Usage
 
