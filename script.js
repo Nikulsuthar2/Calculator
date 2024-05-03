@@ -3,16 +3,21 @@ const opkeys = ["+", "-", "*", "/", "%", ".", "(", ")"];
 
 const display = document.getElementById("display-text");
 const historylist = document.getElementById("history-list");
+const displayhistory = document.getElementById("display-history");
 
 display.innerHTML = "";
 historylist.innerHTML = "";
 
 function allClear() {
     display.innerHTML = "";
+    displayhistory.innerHTML = "";
 }
 
 function clearVal() {
-    display.innerHTML = display.innerHTML.substring(0,display.innerHTML-1);
+    let s = display.innerHTML;
+    if(s[s.length-1] == "(")
+        hasStartBrace = false;
+    display.innerHTML = s.substring(0,s.length-1);
 }
 
 let dotCount = 0;
@@ -38,6 +43,11 @@ function appendVal(val) {
             isNum = false;
             dotCount = 0;
         }
+        else{
+            let str = display.innerHTML;
+            str = str.substring(0,str.length-1) + val;
+            display.innerHTML = str;
+        }
     }
     else if(val == "("  && hasStartBrace == false) {
         isNum = false;
@@ -59,6 +69,7 @@ function equalResult() {
         history = display.innerHTML.trim() + " = ";
         display.innerHTML = eval(display.innerHTML);
         history += display.innerHTML;
+        displayhistory.innerHTML = history.split(" = ")[0];
     }
     if(history != "") {
         if(localStorage.getItem("history-calculator") == null || localStorage.getItem("history-calculator") == "") {
@@ -70,7 +81,7 @@ function equalResult() {
         else {
             localStorage.setItem("history-calculator",localStorage.getItem("history-calculator")+history+";")
         }
-        historylist.innerHTML += "<div class='history-text'><p>"+history+"<p><input class='history-close-btn' type='button' value='⛔' onclick='removeStorage(this.parentNode.parentNode.firstChild.innerHTML);this.parentNode.parentNode.remove();'</div>";
+        historylist.innerHTML += "<div class='history-text'><p onclick='setHistoryBack(this)'>"+history+"<p><input class='history-close-btn' type='button' value='⛔' onclick='removeStorage(this.parentNode.parentNode.firstChild.innerHTML);this.parentNode.parentNode.remove();'</div>";
     }
 }
 
@@ -89,12 +100,18 @@ function removeStorage(val) {
     }
 }
 
+function setHistoryBack(e){
+    let s = e.innerHTML.split(" = ");
+    displayhistory.innerHTML = s[0];
+    display.innerHTML = s[1];
+}
+
 if(localStorage.getItem("history-calculator") != null) {
     let history = localStorage.getItem("history-calculator");
     history = history.split(";")
 
     for(let i=0; i<history.length-1; i++) {
-        historylist.innerHTML += "<div class='history-text'><p>"+history[i]+"<p><input class='history-close-btn' type='button' value='⛔' onclick='removeStorage(this.parentNode.parentNode.firstChild.innerHTML);this.parentNode.parentNode.remove();'</div>";
+        historylist.innerHTML += "<div class='history-text'><p  onclick='setHistoryBack(this)'>"+history[i]+"<p><input class='history-close-btn' type='button' value='⛔' onclick='removeStorage(this.parentNode.parentNode.firstChild.innerHTML);this.parentNode.parentNode.remove();'</div>";
     }
 }
 

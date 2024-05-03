@@ -38,9 +38,16 @@ body{
     border-radius: 10px;  
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: end;
     align-items: end;
     overflow-y: auto;
+}
+
+#display-history{
+    font-weight: 600;
+    color: #828282;
+    padding: 5px;
 }
 
 #display-text{
@@ -51,7 +58,7 @@ body{
     text-align: end;
     word-wrap: break-word;
     white-space: pre-wrap;
-    
+    min-height: 40px;
 }
 
 .keys {
@@ -137,6 +144,7 @@ body{
 }
 
 .history-text{
+    cursor: pointer;
     background-color: lavender;
     border-radius: 10px;
     padding: 10px;
@@ -146,6 +154,15 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+
+.history-text:hover{
+    background-color: #c4c4c4;
+}
+
+.history-text:active{
+    transform: translateY(2px);
+}
+
 .history-close-btn{
     background-color: transparent;
     border: none;
@@ -168,7 +185,7 @@ body{
 
 @media (prefers-color-scheme:dark){
     body{
-        background-color: #181818;
+        background-color: #202020;
     }
     .calculator-body{
         background-color: black;
@@ -177,7 +194,7 @@ body{
         color: white;
     }
     .display{
-        background-color: #212121;
+        background-color: #2e2e2e;
         color: white;
     }
     .key-num{
@@ -198,6 +215,9 @@ body{
     .history-text{
         background-color: #19191b;
         color: white;
+    }
+    .history-text:hover{
+        background-color: #3b3b3b;
     }
 }
 
