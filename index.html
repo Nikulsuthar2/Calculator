@@ -7,32 +7,38 @@
     <link rel="stylesheet" href="style.css" >
 </head>
 <body>
-    <div class="calculator-body">
-        <h2 class="heading">Calculator</h2>
-        <div class="display">
-            <p id="display-history"></p>
-            <p id="display-text"></p>
-        </div>
-        <div class="keys">
-            <input class="key-func" type="button" value="AC" onclick="allClear()">
-            <input class="key-func" type="button" value="C" onclick="clearVal()">
-            <input class="key-op" type="button" value="%" onclick="appendVal('%')">
-            <input class="key-op" type="button" value="/" onclick="appendVal('/')">
-            <input class="key-num" type="button" value="7" onclick="appendVal('7')">
-            <input class="key-num" type="button" value="8" onclick="appendVal('8')">
-            <input class="key-num" type="button" value="9" onclick="appendVal('9')">
-            <input class="key-op" type="button" value="*" onclick="appendVal('*')">
-            <input class="key-num" type="button" value="4" onclick="appendVal('4')">
-            <input class="key-num" type="button" value="5" onclick="appendVal('5')">
-            <input class="key-num" type="button" value="6" onclick="appendVal('6')">
-            <input class="key-op" type="button" value="-" onclick="appendVal('-')">
-            <input class="key-num" type="button" value="1" onclick="appendVal('1')">
-            <input class="key-num" type="button" value="2" onclick="appendVal('2')">
-            <input class="key-num" type="button" value="3" onclick="appendVal('3')">
-            <input class="key-op" type="button" value="+" onclick="appendVal('+')">
-            <input class="key-num" type="button" value="0" onclick="appendVal('0')">
-            <input class="key-num" type="button" value="." onclick="appendVal('.')">
-            <input id="key-equal" class="key-op" type="button" value="=" onclick="equalResult()">
+    <div class="main-body">
+        <div class="calculator-body">
+            <h2 class="heading">Calculator</h2>
+            <div class="display">
+                <p id="display-history" onclick="getPrevHistoryBack(this)"></p>
+                <p id="display-text"></p>
+            </div>
+            <div class="keys">
+                <input class="key-func" type="button" value="AC" onclick="allClear()">
+                <input class="key-func" type="button" value="C" onclick="clearVal()">
+                <input class="key-op" type="button" value="%" onclick="appendVal('%')">
+                <input class="key-op" type="button" value="/" onclick="appendVal('/')">
+                <input class="key-op" type="button" value="(" onclick="appendVal('(')">
+                <input class="key-num" type="button" value="7" onclick="appendVal('7')">
+                <input class="key-num" type="button" value="8" onclick="appendVal('8')">
+                <input class="key-num" type="button" value="9" onclick="appendVal('9')">
+                <input class="key-op" type="button" value="*" onclick="appendVal('*')">
+                <input class="key-op" type="button" value=")" onclick="appendVal(')')">
+                <input class="key-num" type="button" value="4" onclick="appendVal('4')">
+                <input class="key-num" type="button" value="5" onclick="appendVal('5')">
+                <input class="key-num" type="button" value="6" onclick="appendVal('6')">
+                <input class="key-op" type="button" value="-" onclick="appendVal('-')">
+                <input class="key-op" type="button" value="x^y" onclick="appendVal('**')">
+                <input class="key-num" type="button" value="1" onclick="appendVal('1')">
+                <input class="key-num" type="button" value="2" onclick="appendVal('2')">
+                <input class="key-num" type="button" value="3" onclick="appendVal('3')">
+                <input class="key-op" type="button" value="+" onclick="appendVal('+')">
+                <input class="key-op" type="button" value="x!" onclick="findFactorial()">
+                <input class="key-num" type="button" value="0" onclick="appendVal('0')">
+                <input class="key-num" type="button" value="." onclick="appendVal('.')">
+                <input id="key-equal" class="key-op" type="button" value="=" onclick="equalResult()">
+            </div>
         </div>
     </div>
     <div class="history-body">

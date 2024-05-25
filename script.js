@@ -1,5 +1,5 @@
 const numkeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-const opkeys = ["+", "-", "*", "/", "%", ".", "(", ")"];
+const opkeys = ["+", "-", "*", "/", "%", ".", "(", ")","^"];
 
 const display = document.getElementById("display-text");
 const historylist = document.getElementById("history-list");
@@ -17,7 +17,21 @@ function clearVal() {
     let s = display.innerHTML;
     if(s[s.length-1] == "(")
         hasStartBrace = false;
-    display.innerHTML = s.substring(0,s.length-1);
+    if(s.substring(s.length-2,s.length) == "**"){
+        display.innerHTML = s.substring(0,s.length-2);
+    }else{
+        display.innerHTML = s.substring(0,s.length-1);
+    }
+}
+
+// on previous expression click set expression to display and clear previous history
+function getPrevHistoryBack(el){
+    let s = el.innerHTML;
+    if(s[s.length-1] == "!")
+        display.innerHTML = s.substring(0,s.length-1);
+    else
+        display.innerHTML = s.substring(0,s.length);
+    el.innerHTML = "";
 }
 
 let dotCount = 0;
@@ -44,9 +58,15 @@ function appendVal(val) {
             dotCount = 0;
         }
         else{
-            let str = display.innerHTML;
-            str = str.substring(0,str.length-1) + val;
-            display.innerHTML = str;
+            if(display.innerHTML[display.innerHTML.length-1] != ")"){
+                let str = display.innerHTML;
+                str = str.substring(0,str.length-1) + val;
+                display.innerHTML = str;
+            } else {
+                display.innerHTML += val;
+                isNum = false;
+                dotCount = 0;
+            }
         }
     }
     else if(val == "("  && hasStartBrace == false) {
@@ -63,11 +83,23 @@ function appendVal(val) {
     }
 }
 
-function equalResult() {
+function findFactorial(){
+    let n = parseInt(eval(display.innerHTML));
+    if(isNaN(n)) n = 0;
+    let f = 1;
+    for(let i=1; i<=n; i++){
+        f *= i;
+    }
+    display.innerHTML = f;
+    equalResult(true,n);
+}
+
+function equalResult(fact=false,n=0) {
     let history = "";
+
     if(display.innerHTML.trim() != "") {
-        history = display.innerHTML.trim() + " = ";
-        display.innerHTML = eval(display.innerHTML);
+        history = fact ? n.toString() + "! = " : display.innerHTML.trim() + " = ";
+        display.innerHTML = eval(display.innerHTML.replace("^","**"));
         history += display.innerHTML;
         displayhistory.innerHTML = history.split(" = ")[0];
     }
@@ -132,5 +164,8 @@ document.addEventListener('keydown',(event) => {
     }
     if(event.key == "Escape") {
         allClear();
+    }
+    if(event.shiftKey && event.key == "^") {
+        appendVal("^");
     }
 });
